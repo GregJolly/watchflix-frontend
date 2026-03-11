@@ -1,6 +1,18 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Bebas_Neue, DM_Sans } from "next/font/google"
+
+const bebasNeue = Bebas_Neue({
+    weight: "400",
+    subsets: ["latin"],
+    variable: "--font-bebas",
+})
+
+const dmSans = DM_Sans({
+    subsets: ["latin"],
+    variable: "--font-dm-sans",
+})
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${bebasNeue.variable} ${dmSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
       </body>
