@@ -240,7 +240,7 @@ function ProfilePage() {
                                                 </button>
                                                 <img src={`https://image.tmdb.org/t/p/w500${movie.posterPath}`}
                                                     alt={movie.title}
-                                                    onClick={()=>router.push(`/movies/${movie.tmdbIdd}`)} 
+                                                    onClick={()=>router.push(`/movies/${movie.tmdbId}`)} 
                                                     className='w-full h-64 object-cover'/>
                                                 <div className='p-3'>
                                                     <h3 className='text-sm font-semibold truncate'>{movie.title}</h3>
