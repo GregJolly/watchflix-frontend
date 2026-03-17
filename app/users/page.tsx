@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar';
 import { searchMovie, searchUsers } from '@/lib/api';
-import { UserProfile } from '@/lib/types';
+
 
 export default function UserSearch() {
 
@@ -68,9 +68,15 @@ export default function UserSearch() {
                         searchResults.length > 0 ? (<div>
                             {searchResults.map((user: any, index) => {
                                 return (
-                                    <div key={user.id} className='bg-zinc-800  gap-4 text-xl text-center text-white p-8 hover:bg-zinc-700 transition-all duration-200 cursor-pointer rounded-lg mb-4'>
-                                        <h2>{user.username}</h2>
+                                    <button
+                                        onClick={() => router.push(`/users/${user.username}`)}
+                                        key={user.id}
+                                        className='flex items-center gap-4 w-full bg-zinc-800 text-white p-4 hover:bg-zinc-700 transition-all duration-200 cursor-pointer rounded-xl mb-3'>
+                                        <div className='w-10 h-10 rounded-full bg-red-600 flex items-center justify-center font-bold text-lg shrink-0'>
+                                            {user.username[0].toUpperCase()}
                                         </div>
+                                        <h2 className='font-medium'>{user.username}</h2>
+                                    </button>
                                 )
                             })}
                         </div>) : (
