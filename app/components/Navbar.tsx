@@ -1,19 +1,32 @@
+"use client"
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 
 export default function Navbar() {
 
     const router = useRouter();
 
-    const getUsernameFromToken = () => {
-        const token = localStorage.getItem('token');
-        if (!token) return null;
-        const payload = JSON.parse(atob(token.split('.')[1]));
-        return payload.sub; // sub = username
-    }
+    const [username, setUsername] = useState('');
 
-    const username = getUsernameFromToken();
+    useEffect(() => {
+            
+        const token = localStorage.getItem('token');
+            if (!token) return;
+        try{
+            
+
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            setUsername(payload.sub);
+        }
+        catch(err)
+        {
+            console.error("Couldn't retrieve username. Logged out!", err);
+            handleLogout();
+        }
+    }, []);
+
+    
     const handleLogout = () => {
         localStorage.removeItem('token');
         router.push('/');

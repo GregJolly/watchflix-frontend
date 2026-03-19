@@ -89,6 +89,7 @@ export const deleteUserMovie = async (tmdbId: number) => {
 
 export const listUserMovies = async () => {
     const res = await fetch(`${BASE_URL}/me/movies`, {
+        method : 'GET',
         headers: authHeaders()
     });
     return res.json();
@@ -104,6 +105,7 @@ export const rateMovie = async (tmdbId: number, rating: number) => {
 
 export const getUserProfile = async () => {
     const res = await fetch(`${BASE_URL}/me`, {
+        method: 'GET',
         headers: authHeaders()
     });
     return res.json();
@@ -112,6 +114,7 @@ export const getUserProfile = async () => {
 // USERS
 export const getUserDetails = async (username: string) => {
     const res = await fetch(`${BASE_URL}/users/${username}`, {
+        method: 'GET',
         headers: authHeaders()
     });
     return res.json();
